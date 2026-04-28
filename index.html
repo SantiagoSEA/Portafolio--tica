@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brújula Ética · Portafolio Digital · HUM-010</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:       #fdfdfd;
+  --cream-dark:  #EDE6D6;
+  --gold:        #B8942A;
+  --gold-light:  #D4AF5A;
+  --gold-pale:   #F0E4C0;
+  --navy:        #1A2744;
+  --navy-mid:    #243360;
+  --navy-light:  #3A4F82;
+  --text:        #1A1A18;
+  --muted:       #6B6558;
+  --border:      rgba(184,148,42,0.25);
+  --border-light:rgba(184,148,42,0.12);
+  --white:       #FFFFFF;
+  --radius:      4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  
+font-family: 'Jost', sans-serif;
+  background: linear-gradient(135deg, #f9f9fd, #5f92df);
+}
+
+/* ── NAVBAR ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(245,240,232,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 500;
+  display: flex; align-items: center;
+  padding: 0 2.5rem;
+  height: 56px;
+  gap: 2rem;
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--navy); letter-spacing: 0.02em;
+  white-space: nowrap; flex-shrink: 0;
+}
+.nav-brand em { color: var(--gold); font-style: italic; }
+.nav-tag {
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); font-family: 'Jost', sans-serif; font-weight: 400;
+  border-left: 1px solid var(--border); padding-left: 1rem;
+}
+.nav-links {
+  display: flex; gap: 0; margin-left: auto; list-style: none;
+}
+.nav-links a {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; font-weight: 400;
+  padding: 0 1rem; height: 56px; display: flex; align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--navy); border-bottom-color: var(--gold);
+}
+.nav-share {
+  background: var(--navy); color: white;
+  border: none; border-radius: var(--radius);
+  font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.06em; padding: 7px 16px; cursor: pointer;
+  display: flex; align-items: center; gap: 7px; white-space: nowrap;
+  transition: background 0.2s; flex-shrink: 0;
+}
+.nav-share:hover { background: var(--navy-mid); }
+.nav-share svg { width: 14px; height: 14px; }
+
+/* ── SECTIONS BASE ── */
+.section {
+  display: none; min-height: 100vh; padding-top: 56px;
+}
+.section.active { display: block; }
+
+/* ── HERO (INICIO) ── */
+.hero {
+  padding: 7rem 10vw 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeUp 0.6s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); border-radius: 2px;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); padding: 6px 14px; margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.hero-badge::before {
+  content: '+'; font-size: 12px; color: var(--gold);
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 9vw, 96px);
+  font-weight: 500; line-height: 1;
+  color: var(--navy); margin-bottom: 0;
+}
+.hero-title-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 9vw, 96px);
+  font-weight: 400; font-style: italic;
+  color: var(--gold); line-height: 1.05;
+  margin-bottom: 1rem;
+}
+.hero-tagline {
+  font-family: 'EB Garamond', serif;
+  font-style: italic; font-size: 18px;
+  color: var(--muted); margin-bottom: 2.5rem;
+}
+.hero-rule {
+  width: 48px; height: 2px; background: var(--gold);
+  margin-bottom: 2rem;
+}
+.hero-desc {
+  max-width: 480px; font-size: 15px; line-height: 1.75;
+  color: var(--text); font-weight: 300; margin-bottom: 3rem;
+}
+.hero-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+}
+.hero-meta-item label {
+  display: block; font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  font-weight: 400;
+}
+.hero-meta-item input, .hero-meta-item span {
+  font-size: 14px; font-weight: 500; color: var(--navy);
+  font-family: 'Jost', sans-serif;
+  background: transparent; border: none; outline: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s; width: 180px;
+}
+.hero-meta-item input:focus { border-bottom-color: var(--gold); }
+.hero-meta-item input::placeholder { color: var(--muted); font-weight: 300; }
+.hero-explore {
+  margin-top: 4rem; display: flex; align-items: center; gap: 12px;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer;
+}
+.hero-explore .rule { width: 40px; height: 1px; background: var(--gold); }
+
+/* ── EQUIPO ── */
+.equipo-wrap {
+  padding: 6rem 8vw 5rem;
+  max-width: 1300px; margin: 0 auto;
+  animation: fadeUp 0.5s ease both;
+}
+.section-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.section-eyebrow .rule { width: 32px; height: 1px; background: var(--gold); }
+.section-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.1;
+  color: var(--navy); margin-bottom: 0.75rem;
+}
+.section-h2 em { font-style: italic; font-weight: 400; }
+.section-desc {
+  max-width: 500px;
+  line-height: 1.8;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.team-card {
+   background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+.team-card:hover {  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(255, 227, 227, 0.15); }
+.team-photo {
+  width: 100%; aspect-ratio: 3/4;
+  background: #D8DDE8;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.team-photo-label {
+  position: absolute; bottom: 0; left: 0;
+  background: rgba(26,39,68,0.65);
+  color: rgba(255,255,255,0.7);
+  font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 10px; width: 100%;
+}
+.team-photo svg { width: 48px; height: 48px; opacity: 0.35; }
+.team-photo input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+}
+.team-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+}
+.team-info { padding: 14px 14px 16px; }
+.team-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 600; color: var(--navy);
+  margin-bottom: 2px;
+}
+.team-name input {
+  background: transparent; border: none; outline: none;
+  font-family: inherit; font-size: inherit; font-weight: inherit;
+  color: inherit; width: 100%;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.team-name input:focus { border-bottom-color: var(--gold); }
+.team-career {
+  font-size: 11px; color: var(--gold); font-weight: 400;
+  margin-bottom: 8px; letter-spacing: 0.02em;
+}
+.team-career input {
+  background: transparent; border: none; outline: none;
+  font-family: inherit; font-size: inherit; color: inherit;
+  width: 100%; border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.team-career input:focus { border-bottom-color: var(--gold); }
+.team-bio {
+  font-size: 11px; line-height: 1.6; color: var(--muted);
+  margin-bottom: 10px;
+}
+.team-bio textarea {
+  background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif; font-size: 11px; line-height: 1.6;
+  color: var(--muted); width: 100%; resize: none;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.team-bio textarea:focus { border-bottom-color: var(--gold); }
+.team-li {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--navy); color: white;
+  font-size: 9px; letter-spacing: 0.06em; padding: 4px 10px;
+  border-radius: 2px; cursor: pointer; text-decoration: none;
+  font-family: 'Jost', sans-serif;
+}
+
+/* ── MANIFIESTO ── */
+.manifiesto-wrap {
+  padding: 6rem 8vw 5rem;
+  max-width: 1300px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+  animation: fadeUp 0.5s ease both;
+}
+.valores-list { margin-top: 1.5rem; }
+.valor-row {
+  display: flex; align-items: stretch; gap: 0;
+  border: 1px solid var(--border-light); border-bottom: none;
+  background: var(--white);
+}
+.valor-row:last-child { border-bottom: 1px solid var(--border-light); }
+.valor-num {
+  width: 44px; flex-shrink: 0;
+  background: var(--cream-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic; color: var(--gold);
+  border-right: 1px solid var(--border-light);
+}
+.valor-content { padding: 12px 16px; flex: 1; }
+.valor-title input, .valor-type input {
+  background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif; width: 100%;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.valor-title input { font-size: 13px; font-weight: 500; color: var(--navy); }
+.valor-type input { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.valor-title input:focus, .valor-type input:focus { border-bottom-color: var(--gold); }
+
+.metafora-box {
+  border: 1px solid var(--border);
+  padding: 1.5rem; border-radius: 2px;
+  margin-bottom: 1.5rem; background: var(--white);
+}
+.metafora-eyebrow {
+  font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 8px;
+  margin-bottom: 1rem;
+}
+.metafora-eyebrow::before { content: '+'; color: var(--gold); }
+.metafora-text {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 15px; line-height: 1.75; color: var(--navy);
+}
+.metafora-text textarea {
+  width: 100%; background: transparent; border: none; outline: none;
+  font-family: inherit; font-style: inherit; font-size: inherit;
+  line-height: inherit; color: inherit; resize: vertical; min-height: 80px;
+}
+.right-block h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; color: var(--navy);
+  margin-bottom: 10px; margin-top: 1.5rem;
+}
+.right-block p, .right-block textarea {
+  font-size: 13px; line-height: 1.75; color: var(--muted);
+  width: 100%; background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif; resize: vertical;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.right-block textarea:focus { border-bottom-color: var(--gold); }
+.poblaciones-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.pobl-tag {
+ border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 12px;
+  border: none;
+
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+
+  color: #1d1d1f;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.pobl-tag:hover, .pobl-tag.active { background: rgba(255,255,255,0.6);
+  transform: scale(1.05); }
+.ai-trigger {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 0.06em;
+  background: var(--cream-dark); border: 1px solid var(--border);
+  border-radius: 2px; padding: 5px 12px; cursor: pointer;
+  color: var(--gold); font-family: 'Jost', sans-serif;
+  transition: background 0.2s; margin-top: 8px;
+}
+.ai-trigger:hover { background: var(--gold-pale); }
+.ai-trigger.loading { opacity: 0.6; cursor: wait; }
+
+/* ── PODCAST ── */
+.podcast-wrap {
+  padding: 6rem 8vw 5rem;
+  max-width: 900px; margin: 0 auto;
+  animation: fadeUp 0.5s ease both;
+}
+.podcast-card {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-radius: 2px; padding: 2rem; margin-bottom: 1.5rem;
+}
+.podcast-ep {
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.podcast-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.podcast-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+.podcast-player {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--cream-dark); border-radius: 2px;
+  padding: 10px 16px;
+}
+.play-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--navy); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background 0.2s;
+}
+.play-btn:hover { background: var(--navy-mid); }
+.play-btn svg { width: 14px; height: 14px; fill: white; margin-left: 2px; }
+.podcast-url {
+  flex: 1; font-size: 12px; color: var(--muted);
+  background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif;
+  border-bottom: 1px dashed var(--border); padding-bottom: 2px;
+}
+.podcast-duration { font-size: 11px; color: var(--muted); }
+
+/* ── VIDEO REACCIÓN ── */
+.video-wrap {
+  padding: 6rem 8vw 5rem;
+  max-width: 1100px; margin: 0 auto;
+  animation: fadeUp 0.5s ease both;
+}
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.video-card {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-radius: 2px; overflow: hidden;
+}
+.video-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--navy); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; position: relative;
+}
+.video-thumb input {
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif; text-align: center; width: 80%;
+  border-bottom: 1px dashed rgba(255,255,255,0.3);
+}
+.video-info { padding: 1.2rem; }
+.video-tag {
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.video-title-in {
+  font-family: 'Cormorant Garamond', serif; font-size: 17px;
+  font-weight: 600; color: var(--navy); margin-bottom: 8px;
+  background: transparent; border: none; outline: none; width: 100%;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.video-title-in:focus { border-bottom-color: var(--gold); }
+.video-reac {
+  font-size: 12px; color: var(--muted); line-height: 1.65;
+  background: transparent; border: none; outline: none; width: 100%;
+  font-family: 'Jost', sans-serif; resize: vertical; min-height: 70px;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.video-reac:focus { border-bottom-color: var(--gold); }
+
+/* ── INFOGRAFÍA ── */
+.info-wrap {
+  padding: 6rem 8vw 5rem;
+  max-width: 900px; margin: 0 auto;
+  animation: fadeUp 0.5s ease both;
+}
+.info-frame {
+  width: 100%; border: 2px solid var(--border);
+  border-radius: 2px; background: var(--white);
+  padding: 3rem; min-height: 400px;
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.info-title-in {
+  font-family: 'Cormorant Garamond', serif; font-size: 32px;
+  color: var(--navy); font-weight: 600; text-align: center;
+  background: transparent; border: none; outline: none;
+  border-bottom: 1px solid transparent; width: 100%;
+  transition: border-color 0.2s; text-align: center;
+}
+.info-title-in:focus { border-bottom-color: var(--gold); }
+.info-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+.info-col {
+  border-left: 2px solid var(--gold); padding-left: 1rem;
+}
+.info-col-title {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+.info-col-body {
+  font-size: 13px; line-height: 1.7; color: var(--muted);
+  background: transparent; border: none; outline: none;
+  font-family: 'Jost', sans-serif; resize: vertical;
+  width: 100%; min-height: 100px;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.info-col-body:focus { border-bottom-color: var(--gold); }
+
+/* ── AI MODAL ── */
+.modal-bg {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,39,68,0.5); z-index: 800;
+  align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.modal-bg.open { display: flex; }
+.modal-box {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 2px; width: 100%; max-width: 500px;
+  padding: 2rem; animation: fadeUp 0.25s ease;
+}
+.modal-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.modal-sub { font-size: 12px; color: var(--muted); margin-bottom: 1.2rem; }
+.modal-input {
+  width: 100%; border: 1px solid var(--border); border-radius: 2px;
+  padding: 10px 12px; font-family: 'Jost', sans-serif; font-size: 13px;
+  background: var(--white); color: var(--text); resize: vertical;
+  outline: none; min-height: 80px; margin-bottom: 10px;
+}
+.modal-input:focus { border-color: var(--gold); }
+.modal-result {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-left: 3px solid var(--gold); border-radius: 2px;
+  padding: 1rem; font-family: 'EB Garamond', serif;
+  font-style: italic; font-size: 14px; line-height: 1.7;
+  color: var(--navy); display: none; margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.btn-gold {
+  background: linear-gradient(135deg, #d4af5a, #b8942a);
+  color: white;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(184,148,42,0.4); }
+.btn-gold:disabled { opacity: 0.5; cursor: wait; }
+.btn-use {
+  background: var(--navy); color: white; border: none;
+  border-radius: 2px; padding: 9px 22px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  letter-spacing: 0.06em; cursor: pointer; display: none;
+  transition: background 0.2s;
+}
+.btn-use:hover { background: var(--navy-mid); }
+.btn-cancel {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 2px; padding: 9px 16px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  color: var(--muted); cursor: pointer;
+}
+.spinner {
+  display: inline-block; width: 11px; height: 11px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white; border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle; margin-right: 5px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── SAVE BAR ── */
+.save-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white); border-top: 1px solid var(--border-light);
+  padding: 10px 2.5rem; display: flex; align-items: center;
+  justify-content: space-between; z-index: 400;
+}
+.save-bar-left { font-size: 11px; color: var(--muted); }
+.save-bar-right { display: flex; gap: 8px; align-items: center; }
+.save-ok { font-size: 11px; color: var(--gold); display: none; }
+.btn-save {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 2px; padding: 7px 16px;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  color: var(--navy); cursor: pointer; letter-spacing: 0.04em;
+}
+.btn-print {
+  background: var(--navy); color: white; border: none;
+  border-radius: 2px; padding: 7px 16px;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  letter-spacing: 0.06em; cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .manifiesto-wrap { grid-template-columns: 1fr;
+    gap: 2rem; }
+  .video-grid { grid-template-columns: 1fr; }
+  .info-cols { grid-template-columns: 1fr; }
+  
+}
+@media print {
+  .nav, .save-bar, .modal-bg, .ai-trigger { display: none !important; }
+  .section { display: block !important; }
+}
+/*IMPLEMENTACION NUEVA CSS*/
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HOVER MÁS PRO */
+.team-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* LINKEDIN HOVER */
+.team-li:hover {
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+/* GLASS EFFECT */
+.glass {
+ background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+/*CURSOR*/
+#cursor {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  z-index: 999;
+}
+/*EFECTO POBLACION VULNERABLE*/
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,40,0.6);
+  backdrop-filter: blur(14px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 999;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* IMAGEN */
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 18px;
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+
+  transform: scale(0.6) translateY(40px);
+  opacity: 0;
+
+  transition: 
+    transform 0.9s cubic-bezier(.22,1,.36,1),
+    opacity 0.4s ease;
+}
+
+.modal.active img {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* BOTÓN CERRAR */
+.modal-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: 0.3s ease;
+}
+
+.modal.active .modal-close {
+  opacity: 1;
+  transform: translateY(0);
+}
+/*TIPOGRAFIA FORMAL*/
+/* ===== SISTEMA DE ESCALA TIPOGRÁFICA ===== */
+
+.section-h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+}
+
+.right-block h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.section-desc,
+.right-block p {
+  font-size: 15px;
+  color: rgba(0,0,0,0.65);
+  line-height: 1.7;
+}
+
+/* ===== CONSISTENCIA EN TEXTOS ===== */
+
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.metafora-text {
+  font-size: 14px;
+}
+
+/* ===== JERARQUÍA VISUAL (ESPACIADOS) ===== */
+
+.manifiesto-wrap {
+  gap: 4rem; /* antes 6rem → muy separado */
+}
+
+.right-block h3 {
+  margin-top: 0.8rem;
+}
+
+/* ===== MEJOR ALINEACIÓN ===== */
+
+.section-desc {
+  margin-bottom: 2rem;
+}
+
+.valores-list {
+  margin-top: 1rem;
+}
+
+/* ===== BOTONES MÁS LIMPIOS ===== */
+
+.pobl-tag {
+  font-size: 11px;
+  padding: 6px 14px;
+}
+
+/* ===== MAPA CRÍTICO BOTÓN ===== */
+
+.ai-trigger {
+  font-size: 11px;
+  padding: 8px 18px;
+}
+/*BOTONES*/
+.poblaciones-tags {
+  display: flex;
+  flex-wrap: wrap;           /* permite varias filas */
+  justify-content: center;   /* centra en horizontal */
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+/* SOLO en celular */
+@media (max-width: 600px) {
+  .poblaciones-tags {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pobl-tag {
+    width: 85%;
+    text-align: center;
+  }
+}
+.pobl-tag {
+  padding: 8px 18px;
+  border-radius: 20px;
+  min-width: 300px; /* mismo tamaño */
+  text-align: center;
+
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(184,148,42,0.3);
+
+  transition: 0.3s ease;
+}
+
+.pobl-tag:hover {
+  transform: translateY(-2px);
+}
+.pobl-tag:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.6);
+}
+/*SCROLL WOW EFECT*/
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/*CSS BRUJULA POSICIONAMIENTO*/
+.floating-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* no bloquea clicks */
+  overflow: hidden;
+}
+
+.float {
+  position: absolute;
+  width: 800px;
+  opacity: 0.20;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes floatSide {
+  0%   { transform: translateX(0px); }
+  50%  { transform: translateX(20px); }
+  100% { transform: translateX(0px); }
+}
+.float1 {
+  top: 10%;
+  left: 5%;
+  animation: floatUp 6s ease-in-out infinite;
+}
+
+.float2 {
+  top: 60%;
+  left: 80%;
+  animation: floatSide 8s ease-in-out infinite;
+}
+
+.float3 {
+  top: 30%;
+  left: 50%;
+  animation: floatUp 10s ease-in-out infinite;
+}
+.section,
+.nav,
+.equipo-wrap,
+.manifiesto-wrap {
+  position: relative;
+  z-index: 2;
+}
+</style>
+</head>
+<script>
+document.addEventListener("mousemove", e => {
+  const cursor = document.getElementById("cursor");
+  if(cursor){
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  }
+});
+</script>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+});
+</script>
+<body>
+  /*BRUJULA FLOTANTE*/
+  <div class="floating-bg">
+  <img src="Images/Brujula Fondo.png" class="float float1">
+  <img src="Images/Brujula Fondo.png" class="float float2">
+  <img src="Images/Brujula Fondo.png" class="float float3">
+</div>
+  <div id="modal" class="modal">
+  <span class="modal-close" onclick="cerrarModal()">×</span>
+  <img id="modal-img" src="">
+</div>
+<div id="cursor"></div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Brújula <em>Ética</em></div>
+  <span class="nav-tag">Portafolio Digital · HUM-010</span>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showSection('inicio',this)">Inicio</a></li>
+    <li><a href="#" onclick="showSection('equipo',this)">Equipo</a></li>
+    <li><a href="#" onclick="showSection('manifiesto',this)">Manifiesto</a></li>
+    <li><a href="#" onclick="showSection('podcast',this)">Podcast</a></li>
+    <li><a href="#" onclick="showSection('video',this)">Video-Reacción</a></li>
+    <li><a href="#" onclick="showSection('info',this)">Infografía</a></li>
+  </ul>
+  <button class="nav-share">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    Compartir en LinkedIn
+  </button>
+</nav>
+
+<!-- INICIO -->
+<section class="section active" id="sec-inicio">
+  <div class="hero">
+    <div class="hero-badge">Ética y Deontología Profesional · 2026-I</div>
+    <div class="hero-title">Brújula</div>
+    <div class="hero-title-italic">Ética</div>
+    <p class="hero-tagline">Portafolio Digital de Identidad Ética Profesional</p>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">En nuestra metáfora de la brújula, este concepto se aplica al representar la orientación hacia un objetivo claro. Así como la brújula indica el camino correcto, nuestra formación profesional guía nuestras decisiones hacia un propósito definido. Este fin no es solo técnico, sino también ético, ya que busca generar un impacto positivo en la sociedad. Cada acción que realizamos está dirigida a cumplir ese objetivo mayor.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <label>Curso</label>
+        <span>Ética y Deontología Profesional</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Carrera</label>
+         <span>Ingeniería Empresarial y de Sistemas</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Semestre</label>
+         <span>2026-1</span>
+
+      </div>
+      <div class="hero-meta-item">
+        <label>Docente</label>
+         <span>Espiritu Criales Rolando</span>
+      </div>
+    </div>
+    <div class="hero-explore" onclick="showSection('equipo', document.querySelectorAll('.nav-links a')[1])">
+      <span class="rule"></span>
+      Explorar el portafolio
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="section" id="sec-equipo">
+  <div class="equipo-wrap">
+    <div class="section-eyebrow"><span class="rule"></span>Nuestro equipo</div>
+    <h2 class="section-h2">Quiénes <em>somos</em></h2>
+    <p class="section-desc">Como equipo integramos nuestro propósito en desarrollar soluciones tecnológicas aportando valor a la sociedad. Nuestro fin (telos) siguiendo a lo propuesto por Aristóteles es contribuir de manera responsable y ética el desarrollo organizacional y social</p>
+    <div class="team-grid" id="team-grid">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section class="section" id="sec-manifiesto">
+  <div class="manifiesto-wrap">
+    <div>
+      <div class="section-eyebrow"><span class="rule"></span>Módulo I · Semana 5</div>
+      <h2 class="section-h2">Manifiesto de<br><em>Identidad Ética</em></h2>
+      <p class="section-desc" style="margin-bottom:2rem;"> Cerramos este manifiesto reafirmando nuestra profesión como una brújula orientada al bienestar humano. Nos comprometemos con los excluidos digitales y trabajadores desplazados, priorizando los valores vitales y espirituales sobre la rentabilidad económica.</p>
+      <div style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;">Jerarquía de valores (Scheler)</div>
+      <div class="valores-list" id="valores-list">
+        <!-- rendered by JS -->
+      </div>
+    </div>
+    <div class="right-block">
+      <div class="metafora-box">
+        <div class="metafora-eyebrow">Nuestra metáfora artística</div>
+        <div class="metafora-text">
+        <p>Los seres humanos tienen una ley moral interna que les indica lo que está bien y lo que está mal</p>
+        </div>
+      </div>
+      <h3>Propósito profesional</h3>
+      <p>Como equipo integramos nuestro propósito en desarrollar soluciones tecnológicas aportando valor a la sociedad. Nuestro fin (telos) siguiendo a lo propuesto por Aristóteles es contribuir de manera responsable y ética el desarrollo organizacional y social. De esta manera buscamos orientar nuestro trabajo hacia un impacto positivo en las personas y en las empresas.</p>
+      
+      <h3>Poblaciones vulnerables que protegemos</h3>
+       <p>Las poblaciones involucradas en el desarrollo e implementación de soluciones tecnológicas son fundamentales para el ejercicio ético de nuestra carrera, ya que nuestras decisiones impactan directamente en su bienestar, privacidad y calidad de vida.</p>
+   <div class="poblaciones-tags">
+  <button class="pobl-tag" onclick="abrirModal('Images/Baja alfabetizacion.png')">
+    Personas con baja alfabetización digital
+  </button>
+
+  <button class="pobl-tag" onclick="abrirModal('Images/Mypes desactualizadas.png')">
+    Mypes con dificultad de actualización tecnológica
+  </button>
+
+  <button class="pobl-tag" onclick="abrirModal('Images/Trabajadores desplazados.png')">
+    Trabajadores desplazados por desarrollo
+  </button>
+</div>
+     
+      <h3>Mapa crítico profesional</h3>
+      <p>En el ejercicio profesional, no solo importan los resultados, sino también cómo se obtienen. Este mapa crítico busca evidenciar las negligencias éticas más relevantes en nuestro campo y, a partir de ello, plantear propuestas concretas que promuevan una práctica más responsable, justa y centrada en las personas.</p>
+      <button class="ai-trigger" onclick="abrirModal('Images/Mapa Critico.png')">
+  Ver mapa crítico
+</button>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section class="section" id="sec-podcast">
+  <div class="podcast-wrap">
+    <div class="section-eyebrow"><span class="rule"></span>Módulo II</div>
+    <h2 class="section-h2">Nuestro <em>Podcast</em></h2>
+    <p class="section-desc">Conversaciones sobre ética profesional en nuestra carrera: casos reales, dilemas y reflexiones del equipo.</p>
+    <div id="podcast-cards">
+      <!-- rendered by JS -->
+    </div>
+    <button class="ai-trigger" onclick="openModal('podcast-desc-0','Descripción del episodio de podcast','podcast')">✦ Generar descripción con IA</button>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="section" id="sec-video">
+  <div class="video-wrap">
+    <div class="section-eyebrow"><span class="rule"></span>Módulo III</div>
+    <h2 class="section-h2">Video-<em>Reacción</em></h2>
+    <p class="section-desc">Análisis crítico de contenidos audiovisuales relacionados con la ética y deontología de nuestra carrera.</p>
+    <div class="video-grid" id="video-grid">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAFÍA -->
+<section class="section" id="sec-info">
+  <div class="info-wrap">
+    <div class="section-eyebrow"><span class="rule"></span>Módulo IV</div>
+    <h2 class="section-h2">Nuestra <em>Infografía</em></h2>
+    <p class="section-desc">Síntesis visual de los aprendizajes éticos del semestre presentada como evidencia integradora.</p>
+    <div class="info-frame">
+      <input class="info-title-in" type="text" placeholder="Título de la infografía" id="info-titulo" oninput="save()">
+      <div class="info-cols">
+        <div class="info-col">
+          <div class="info-col-title">Concepto central</div>
+          <textarea class="info-col-body" id="info-col1" placeholder="Describe el concepto ético central de la infografía..." oninput="save()"></textarea>
+          <button class="ai-trigger" onclick="openModal('info-col1','Concepto central de la infografía','infografia1')">✦ IA</button>
+        </div>
+        <div class="info-col">
+          <div class="info-col-title">Dilemas identificados</div>
+          <textarea class="info-col-body" id="info-col2" placeholder="Principales dilemas éticos de tu carrera..." oninput="save()"></textarea>
+          <button class="ai-trigger" onclick="openModal('info-col2','Dilemas éticos identificados','infografia2')">✦ IA</button>
+        </div>
+        <div class="info-col">
+          <div class="info-col-title">Compromisos éticos</div>
+          <textarea class="info-col-body" id="info-col3" placeholder="Compromisos éticos del equipo para el ejercicio profesional..." oninput="save()"></textarea>
+          <button class="ai-trigger" onclick="openModal('info-col3','Compromisos éticos del equipo','infografia3')">✦ IA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVE BAR -->
+<div class="save-bar">
+  <span class="save-bar-left">Brújula Ética · Portafolio Digital HUM-010 · Los cambios se guardan automáticamente</span>
+  <div class="save-bar-right">
+    <span class="save-ok" id="save-ok">✓ Guardado</span>
+    <button class="btn-save" onclick="save(true)">Guardar borrador</button>
+    <button class="btn-print" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+</div>
+
+<!-- AI MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-h" id="m-title">Generar con IA</div>
+    <div class="modal-sub">Agrega contexto para personalizar el texto (opcional):</div>
+    <textarea class="modal-input" id="m-ctx" placeholder="Ej: Somos 5 estudiantes de Psicología, semestre 2026-I, nos interesa la ética en el área clínica..."></textarea>
+    <div class="modal-result" id="m-result"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-use" id="btn-use" onclick="useAI()">Usar este texto</button>
+      <button class="btn-gold" id="btn-gen" onclick="generateAI()">✦ Generar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Navigation ──────────────────────────────────────────────────────────────
+function showSection(id, link) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+
+// ── Render Team ─────────────────────────────────────────────────────────────
+// ── DATOS DEL EQUIPO (EDITA AQUÍ CADA ALUMNO) ──
+const teamData = [
+  {
+    name: '  Carpio Rojas Luis Carlos',
+    career: 'Ingeniería Empresarial y de Sistemas',
+    bio: 'Como estudiante me interesa ayudar en el impacto de la tecnología',
+    photo: 'Images/Carpio.jpeg',
+    li:'https://www.linkedin.com/in/luis-carpio-584039359/'
+  },
+  {
+    name: 'Hermitaño Sinche Alexis Santiago',
+    career: 'Ingeniería Empresarial y de Sistemas',
+    bio: 'Estudiante con mentalidad crítica y enfoque en soluciones sostenibles.',
+    photo: 'Images/Alexis.jpeg',
+    li: 'https://www.linkedin.com/in/alexis-hermita%C3%B1o-21215324b/'
+  },
+  {
+    name: 'Nuñez Palomino Paola Charlotte',
+    career: 'Ingeniería Empresarial y de Sistemas',
+    bio: 'Interesada en la tecnología y su impacto social, con compromiso ético.',
+    photo: 'Images/PaolaNuñez.jfif',
+    li: 'https://www.linkedin.com/in/paola-nuñez-palomino-263506406?utm_source=share_via&utm_content=profile&utm_medium=member_ios'
+  },
+  {
+    name: 'Muñoz Perez Stephanie Milagros',
+    career: 'Ingeniería Empresarial y de Sistemas',
+    bio: 'Interesada por la innovación, motivada por una ética de responsabilidad tecnológica',
+    photo: 'Images/Stephanie.jpeg',
+    li:'https://www.linkedin.com/in/stephanie-mu%C3%B1oz-b30503406/'
+  } 
+];
+
+
+// ── RENDER TEAM (YA SIN INPUTS) ──
+function renderTeam() {
+  const grid = document.getElementById('team-grid');
+  grid.innerHTML = '';
+
+  teamData.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'team-card';
+
+    card.innerHTML = `
+      <div class="team-photo" id="photo-area-${i}">
+        ${m.photo 
+          ? `<img src="${m.photo}" alt="foto">` 
+          : `<svg viewBox="0 0 24 24" fill="#6B6558">
+               <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+             </svg>`
+        }
+        <span class="team-photo-label">Foto del estudiante</span>
+      </div>
+
+      <div class="team-info">
+        <div class="team-name">${m.name}</div>
+        <div class="team-career">${m.career}</div>
+        <div class="team-bio">${m.bio}</div>
+
+        ${m.li ? `
+  <a class="team-li" href="${m.li}" target="_blank">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+    </svg>
+    LinkedIn
+  </a>
+` : ''}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function handlePhoto(event, idx) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    teamData[idx].photo = e.target.result;
+    renderTeam();
+    save();
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── Render Valores ──────────────────────────────────────────────────────────
+const nums = ['I','II','III','IV'];
+
+const valoresData = [
+  { valor: 'Salud', tipo: 'Valor vital' },
+  { valor: 'Comodidad', tipo: 'Valor de lo agradable' },
+  { valor: 'Verdad', tipo: 'Valor de espirítual' },
+  { valor: 'Ética', tipo: 'Valor de lo sagrado' }
+];
+
+function renderValores() {
+  const list = document.getElementById('valores-list');
+  list.innerHTML = '';
+
+  nums.forEach((n, i) => {
+    const row = document.createElement('div');
+    row.className = 'valor-row';
+
+    row.innerHTML = `
+      <div class="valor-num">${n}</div>
+
+      <div class="valor-content">
+        <div class="valor-title">${valoresData[i].valor}</div>
+        <div class="valor-type">${valoresData[i].tipo}</div>
+      </div>
+    `;
+
+    list.appendChild(row);
+  });
+}
+
+// ── Render Podcast ──────────────────────────────────────────────────────────
+const podcastData = [{titulo:'',url:'',desc:''}];
+function renderPodcast() {
+  const cont = document.getElementById('podcast-cards');
+  cont.innerHTML = '';
+  podcastData.forEach((ep,i) => {
+    const card = document.createElement('div');
+    card.className = 'podcast-card';
+    card.innerHTML = `
+      <div class="podcast-ep">Episodio ${i+1}</div>
+      <input class="podcast-title" type="text" placeholder="Título del episodio de podcast" value="${ep.titulo}" oninput="podcastData[${i}].titulo=this.value;save()" style="width:100%;background:transparent;border:none;outline:none;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:.5rem;border-bottom:1px solid transparent;" onfocus="this.style.borderBottomColor='var(--gold)'" onblur="this.style.borderBottomColor='transparent'">
+      <textarea class="podcast-desc" rows="2" placeholder="Describe de qué trata este episodio: tema, dilema ético abordado y reflexiones del equipo." oninput="podcastData[${i}].desc=this.value;save()" style="width:100%;background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:13px;color:var(--muted);resize:vertical;margin-bottom:1.2rem;">${ep.desc}</textarea>
+      <div class="podcast-player">
+        <button class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <input class="podcast-url" type="text" placeholder="Pega aquí el enlace de Spotify, SoundCloud o YouTube..." value="${ep.url}" oninput="podcastData[${i}].url=this.value;save()">
+        <span class="podcast-duration">-- : --</span>
+      </div>`;
+    cont.appendChild(card);
+  });
+}
+
+// ── Render Video ─────────────────────────────────────────────────────────────
+const videoData = [{titulo:'',url:'',reaccion:''},{titulo:'',url:'',reaccion:''}];
+function renderVideo() {
+  const grid = document.getElementById('video-grid');
+  grid.innerHTML = '';
+  videoData.forEach((v,i) => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `
+      <div class="video-thumb" style="background:var(--navy);">
+        <input type="text" placeholder="Pega URL del video aquí" value="${v.url}" oninput="videoData[${i}].url=this.value;save()" style="color:rgba(255,255,255,0.6);background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:12px;text-align:center;width:80%;border-bottom:1px dashed rgba(255,255,255,0.3);">
+      </div>
+      <div class="video-info">
+        <div class="video-tag">Video-Reacción ${i+1}</div>
+        <input class="video-title-in" type="text" placeholder="Título del video analizado" value="${v.titulo}" oninput="videoData[${i}].titulo=this.value;save()">
+        <textarea class="video-reac" rows="4" placeholder="Escribe la reacción crítica del equipo: ¿qué dilemas éticos plantea este video? ¿cómo se relaciona con tu carrera y los códigos deontológicos?" oninput="videoData[${i}].reaccion=this.value;save()">${v.reaccion}</textarea>
+        <button class="ai-trigger" style="margin-top:.5rem;" onclick="openModal('video-reac-${i}','Reacción crítica al video','video_reaccion')">✦ Generar reacción con IA</button>
+      </div>`;
+    // Patch textarea id after creation
+    setTimeout(() => {
+      const ta = card.querySelectorAll('textarea')[0];
+      if (ta) ta.id = `video-reac-${i}`;
+    }, 0);
+    grid.appendChild(card);
+  });
+}
+
+// ── AI Modal ─────────────────────────────────────────────────────────────────
+let _fieldId = null, _promptType = null, _aiText = '';
+
+const PROMPTS = {
+  proposito: ctx => `Escribe el propósito profesional colectivo de un equipo de estudiantes universitarios del curso de Ética y Deontología Profesional. Debe describir qué tipo de profesionales quieren ser, cuál es su telos y cómo entienden la excelencia (areté). 4-5 oraciones. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
+  mapa_critico: ctx => `Describe en 4-5 oraciones las principales negligencias éticas identificadas en el ámbito laboral de una carrera universitaria y las propuestas de mejora desde la ética profesional. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
+  podcast: ctx => `Escribe una descripción breve (3-4 oraciones) para un episodio de podcast universitario sobre ética y deontología profesional. Debe sonar académico pero accesible. ${ctx?'Contexto: '+ctx:''} Solo la descripción.`,
+  video_reaccion: ctx => `Escribe una reacción crítica (4-5 oraciones) a un video sobre ética profesional, analizando los dilemas éticos que plantea y su relación con la carrera y los códigos deontológicos. ${ctx?'Contexto: '+ctx:''} Solo la reacción.`,
+  infografia1: ctx => `Explica en 3-4 oraciones el concepto ético central para una infografía del curso de Ética y Deontología Profesional. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
+  infografia2: ctx => `Describe en 3-4 oraciones los principales dilemas éticos de una carrera universitaria para una infografía académica. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
+  infografia3: ctx => `Redacta en 3-4 oraciones los compromisos éticos de un equipo de estudiantes para el ejercicio profesional futuro. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
+};
+
+function openModal(fieldId, title, promptType) {
+  _fieldId = fieldId; _promptType = promptType; _aiText = '';
+  document.getElementById('m-title').textContent = title;
+  document.getElementById('m-result').style.display = 'none';
+  document.getElementById('m-result').textContent = '';
+  document.getElementById('btn-use').style.display = 'none';
+  document.getElementById('btn-gen').disabled = false;
+  document.getElementById('btn-gen').innerHTML = '✦ Generar';
+  document.getElementById('m-ctx').value = document.getElementById('h-carrera')?.value || '';
+  document.getElementById('modal-bg').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-bg').classList.remove('open'); }
+function closeModalOutside(e) { if (e.target.id === 'modal-bg') closeModal(); }
+
+function useAI() {
+  if (!_fieldId || !_aiText) return;
+  const el = document.getElementById(_fieldId);
+  if (el) { el.value = _aiText; save(); }
+  closeModal();
+}
+
+async function generateAI() {
+  const ctx = document.getElementById('m-ctx').value.trim();
+  const fn = PROMPTS[_promptType];
+  if (!fn) return;
+  const btn = document.getElementById('btn-gen');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Generando...';
+  document.getElementById('m-result').style.display = 'none';
+  document.getElementById('btn-use').style.display = 'none';
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: fn(ctx) }]
+      })
+    });
+    const data = await res.json();
+    _aiText = data.content?.map(b => b.text||'').join('') || 'Error al generar. Intenta de nuevo.';
+    const el = document.getElementById('m-result');
+    el.textContent = _aiText;
+    el.style.display = 'block';
+    document.getElementById('btn-use').style.display = 'inline-block';
+  } catch {
+    document.getElementById('m-result').textContent = 'Error de conexión.';
+    document.getElementById('m-result').style.display = 'block';
+  }
+  btn.disabled = false;
+  btn.innerHTML = '↻ Regenerar';
+}
+
+// ── Save / Load ──────────────────────────────────────────────────────────────
+function save(showOk=false) {
+  const data = {
+    h: {
+      carrera: document.getElementById('h-carrera')?.value,
+      semestre: document.getElementById('h-semestre')?.value,
+      docente: document.getElementById('h-docente')?.value,
+    },
+    team: teamData,
+    valores: valoresData,
+    metafora: document.getElementById('metafora')?.value,
+    proposito: document.getElementById('proposito')?.value,
+    poblaciones: document.getElementById('poblaciones-desc')?.value,
+    mapa: document.getElementById('mapa-critico')?.value,
+    podcast: podcastData,
+    video: videoData,
+    info: {
+      titulo: document.getElementById('info-titulo')?.value,
+      col1: document.getElementById('info-col1')?.value,
+      col2: document.getElementById('info-col2')?.value,
+      col3: document.getElementById('info-col3')?.value,
+    }
+  };
+  localStorage.setItem('brujula_etica', JSON.stringify(data));
+  if (showOk) {
+    const el = document.getElementById('save-ok');
+    el.style.display = 'inline';
+    setTimeout(() => el.style.display = 'none', 2000);
+  }
+}
+
+function load() {
+  const raw = localStorage.getItem('brujula_etica');
+  if (!raw) return;
+  try {
+    const d = JSON.parse(raw);
+    if (d.h) {
+      if (d.h.carrera)  document.getElementById('h-carrera').value  = d.h.carrera;
+      if (d.h.semestre) document.getElementById('h-semestre').value = d.h.semestre;
+      if (d.h.docente)  document.getElementById('h-docente').value  = d.h.docente;
+    }
+    if (d.team) d.team.forEach((m,i) => Object.assign(teamData[i], m));
+    if (d.valores) d.valores.forEach((v,i) => Object.assign(valoresData[i], v));
+    if (d.metafora)   document.getElementById('metafora').value        = d.metafora;
+    if (d.proposito)  document.getElementById('proposito').value       = d.proposito;
+    if (d.poblaciones) document.getElementById('poblaciones-desc').value = d.poblaciones;
+    if (d.mapa)       document.getElementById('mapa-critico').value    = d.mapa;
+    if (d.podcast)    d.podcast.forEach((p,i) => Object.assign(podcastData[i]||{}, p));
+    if (d.video)      d.video.forEach((v,i) => Object.assign(videoData[i]||{}, v));
+    if (d.info) {
+      if (d.info.titulo) document.getElementById('info-titulo').value = d.info.titulo;
+      if (d.info.col1)   document.getElementById('info-col1').value   = d.info.col1;
+      if (d.info.col2)   document.getElementById('info-col2').value   = d.info.col2;
+      if (d.info.col3)   document.getElementById('info-col3').value   = d.info.col3;
+    }
+    renderTeam(); renderValores(); renderPodcast(); renderVideo();
+  } catch(e) { console.error(e); }
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+renderTeam(); renderValores(); renderPodcast(); renderVideo();
+load();
+</script>
+<script>
+</script>
+<script>
+function abrirModal(src) {
+  const modal = document.getElementById("modal");
+  const img = document.getElementById("modal-img");
+
+  img.src = src;
+  modal.classList.add("active");
+}
+
+function cerrarModal() {
+  document.getElementById("modal").classList.remove("active");
+}
+</script>
+</body>
+</html>
