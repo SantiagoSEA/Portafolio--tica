@@ -1346,7 +1346,11 @@ function renderPodcast() {
       <textarea class="podcast-desc" rows="2" placeholder="Describe de qué trata este episodio: tema, dilema ético abordado y reflexiones del equipo." oninput="podcastData[${i}].desc=this.value;save()" style="width:100%;background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:13px;color:var(--muted);resize:vertical;margin-bottom:1.2rem;">${ep.desc}</textarea>
       <div class="podcast-player">
         <button class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <input class="podcast-url" type="text" placeholder="Pega aquí el enlace de Spotify, SoundCloud o YouTube..." value="${ep.url}" oninput="podcastData[${i}].url=this.value;save()">
+        <a class="podcast-url"
+   href="https://open.spotify.com/show/033tDTi1BBP67WdfwShhFi?si=9l2dRQKWRTGmx6L9x-eYXQ"
+   target="_blank">
+   🎧 Escuchar en Spotify
+</a>
         <span class="podcast-duration">-- : --</span>
       </div>`;
     cont.appendChild(card);
