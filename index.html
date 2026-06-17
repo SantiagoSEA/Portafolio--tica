@@ -403,7 +403,12 @@ font-family: 'Jost', sans-serif;
   max-width: 1100px; margin: 0 auto;
   animation: fadeUp 0.5s ease both;
 }
-.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+  justify-content: center;
+  gap: 2rem;
+}
 .video-card {
   background: var(--white); border: 1px solid var(--border-light);
   border-radius: 2px; overflow: hidden;
@@ -936,6 +941,174 @@ font-family: 'Jost', sans-serif;
   color: var(--navy);
   transform: translateX(6px);
 }
+/*VIDEO REACCION*/
+.video-player{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:1rem;
+}
+
+.video-url{
+  text-decoration:none;
+  color:var(--navy);
+  font-family:'Jost',sans-serif;
+  font-weight:600;
+}
+
+.video-url:hover{
+  color:var(--gold);
+}
+
+.video-duration{
+  color:var(--muted);
+  font-size:12px;
+}
+/*css nuevo*/
+.compass-dial {
+  position: relative;
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.compass-ticks {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-conic-gradient(
+    var(--gold) 0deg 2deg,
+    transparent 2deg 22.5deg
+  );
+  opacity: 0.5;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+}
+.compass-dial:hover .compass-ticks { transform: rotate(34deg); opacity: 0.85; }
+.compass-core {
+  position: absolute; inset: 10px; border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.25);
+  transition: background 0.35s ease, transform 0.35s ease;
+}
+.compass-core svg { width: 24px; height: 24px; margin-left: 2px; fill: white; }
+.compass-dial:hover .compass-core { background: var(--gold); transform: scale(1.06); }
+.compass-dial.on-image .compass-core {
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.compass-dial.on-image:hover .compass-core { background: var(--gold); border-color: var(--gold); }
+.pill-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff; text-decoration: none;
+  padding: 10px 20px; border-radius: 999px;
+  font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.05em;
+  transition: all 0.3s ease; white-space: nowrap;
+}
+.pill-link:hover { background: #1DB954; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(29,185,84,0.35); }
+.pill-link.yt:hover { background: #FF0000; box-shadow: 0 10px 24px rgba(255,0,0,0.3); }
+#podcast-cards { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 1.5rem; }
+.podcast-card-v2 {
+  position: relative; overflow: hidden;
+  display: flex; gap: 2.2rem; align-items: flex-start;
+  background: linear-gradient(160deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55));
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.2rem 2.4rem;
+  box-shadow: 0 24px 60px rgba(26,39,68,0.10);
+  animation: fadeUp 0.6s ease both;
+}
+.podcast-card-v2::before {
+  content: ''; position: absolute; width: 280px; height: 280px;
+  background: radial-gradient(circle, var(--gold-pale), transparent 70%);
+  top: -120px; left: -100px; opacity: 0.6; pointer-events: none;
+}
+.podcast-body { flex: 1; min-width: 0; }
+.podcast-title-v2 {
+  display: block; width: 100%; background: transparent; border: none; outline: none;
+  font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600;
+  color: var(--navy); margin: 6px 0 8px;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.podcast-title-v2:focus { border-bottom-color: var(--gold); }
+.podcast-desc-v2 {
+  width: 100%; background: transparent; border: none; outline: none; resize: vertical;
+  font-family: 'Jost', sans-serif; font-size: 13px; line-height: 1.7; color: var(--muted);
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.podcast-desc-v2:focus { border-bottom-color: var(--gold); }
+.podcast-divider { height: 1px; background: repeating-linear-gradient(90deg, var(--border) 0 6px, transparent 6px 12px); margin: 1.2rem 0 1rem; }
+.podcast-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.waveform { display: flex; align-items: center; gap: 3px; height: 26px; }
+.waveform span {
+  width: 3px; height: 22px; border-radius: 2px; transform-origin: bottom;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  animation: wave 1.4s ease-in-out infinite;
+}
+@keyframes wave { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+ /*VIDEOREACCION2.1*/
+ #video-grid.video-grid { gap: 2.2rem; }
+.video-card-v2 {
+  border-radius: 20px; overflow: hidden; background: var(--white);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 24px 60px rgba(26,39,68,0.10);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeUp 0.6s ease both;
+}
+.video-card-v2:hover { transform: translateY(-6px); box-shadow: 0 34px 80px rgba(26,39,68,0.18); }
+.video-frame-v2 {
+  position: relative; aspect-ratio: 16/9; background-color: var(--navy);
+  background-size: cover; background-position: center; cursor: pointer; overflow: hidden;
+}
+.video-frame-v2::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,16,32,0.05) 35%, rgba(8,12,28,0.85));
+  transition: opacity 0.3s;
+}
+.video-frame-v2:hover::after { opacity: 0.55; }
+.video-frame-v2 iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
+.video-tag-v2 {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: rgba(10,16,32,0.45); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.25); color: #fff;
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px;
+}
+.video-dial-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.video-url-input-v2 {
+  position: absolute; bottom: 12px; left: 14px; right: 14px; z-index: 2;
+  background: transparent; border: none; outline: none; color: rgba(255,255,255,0.85);
+  font-size: 11px; font-family: 'Jost', sans-serif;
+  border-bottom: 1px dashed rgba(255,255,255,0.4); padding-bottom: 2px;
+}
+.video-body-v2 { padding: 1.6rem 1.8rem 1.9rem; }
+.video-title-v2 {
+  display: block; width: 100%; background: transparent; border: none; outline: none;
+  font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600;
+  color: var(--navy); margin-bottom: 12px;
+  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+}
+.video-title-v2:focus { border-bottom-color: var(--gold); }
+.video-quote-v2 { border-left: 2px solid var(--gold); padding-left: 14px; margin-bottom: 14px; }
+.video-quote-v2 textarea {
+  width: 100%; background: transparent; border: none; outline: none; resize: vertical;
+  min-height: 90px; font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 13.5px; line-height: 1.75; color: var(--muted);
+}
+.video-footer-v2 { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+
+@media (max-width: 600px) {
+  .podcast-card-v2 { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.4rem; }
+  .podcast-footer { justify-content: center; }
+  .compass-dial { width: 80px; height: 80px; }
+}
+.podcast-card-v2:hover,
+.video-card-v2:hover{
+    transform: translateY(-8px);
+    transition: .4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
 </style>
 </head>
 <script>
@@ -946,6 +1119,7 @@ document.addEventListener("mousemove", e => {
     cursor.style.top = e.clientY + "px";
   }
 });
+
 </script>
 <script>
 const reveals = document.querySelectorAll('.reveal');
@@ -960,6 +1134,7 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
 </script>
 <body>
   <div class="floating-bg">
@@ -1136,6 +1311,7 @@ window.addEventListener('scroll', () => {
     </div>
     <button class="ai-trigger" onclick="openModal('podcast-desc-0','Descripción del episodio de podcast','podcast')">✦ Generar descripción con IA</button>
   </div>
+
 </section>
 
 <!-- VIDEO -->
@@ -1337,49 +1513,96 @@ const podcastData = [{titulo:'',url:'',desc:''}];
 function renderPodcast() {
   const cont = document.getElementById('podcast-cards');
   cont.innerHTML = '';
+  const spotifyUrl = 'https://open.spotify.com/episode/5ijg3BjjuI3u3tVIabcerH?si=pSR4yewkS2u-P9MpPmrjbQ';
   podcastData.forEach((ep,i) => {
     const card = document.createElement('div');
-    card.className = 'podcast-card';
+    card.className = 'podcast-card-v2';
+    const bars = Array.from({ length: 18 }, (_, k) => `<span style="animation-delay:${(k * 0.07).toFixed(2)}s"></span>`).join('');
+
     card.innerHTML = `
-      <div class="podcast-ep">Episodio ${i+1}</div>
-      <input class="podcast-title" type="text" placeholder="Privacidad en venta" value="${ep.titulo}" oninput="podcastData[${i}].titulo=this.value;save()" style="width:100%;background:transparent;border:none;outline:none;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:.5rem;border-bottom:1px solid transparent;" onfocus="this.style.borderBottomColor='var(--gold)'" onblur="this.style.borderBottomColor='transparent'">
-      <textarea class="podcast-desc" rows="2" placeholder="En este episodio abordamos el tema de la comercialización y uso de los datos personales en la era digital. Analizamos el dilema ético de si las empresas tienen derecho a recopilar, utilizar y vender información de los usuarios sin que estos comprendan plenamente las implicancias de su consentimiento. Desde la perspectiva de Immanuel Kant, reflexionamos sobre la importancia de respetar la dignidad y autonomía de las personas, evitando tratarlas únicamente como un medio para obtener beneficios económicos. Desde la visión de John Stuart Mill, evaluamos las consecuencias de estas prácticas para el bienestar individual y social. Como equipo, concluimos que la protección de los datos personales es un desafío ético fundamental y que tanto las empresas como los usuarios deben actuar con responsabilidad para promover un entorno digital más seguro y transparente." oninput="podcastData[${i}].desc=this.value;save()" style="width:100%;background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:13px;color:var(--muted);resize:vertical;margin-bottom:1.2rem;">${ep.desc}</textarea>
-      <div class="podcast-player">
-        <button class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <a class="podcast-url"
-   href="https://open.spotify.com/show/033tDTi1BBP67WdfwShhFi?si=9l2dRQKWRTGmx6L9x-eYXQ"
-   target="_blank">
-   🎧 Escuchar en Spotify
-</a>
-        <span class="podcast-duration">-- : --</span>
+      <div class="compass-dial" onclick="window.open('${spotifyUrl}','_blank')">
+        <div class="compass-ticks"></div>
+        <div class="compass-core"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="podcast-body">
+        <div class="podcast-ep">Episodio ${String(i+1).padStart(2,'0')}</div>
+        <input class="podcast-title-v2" type="text" placeholder="Privacidad en venta" value="${ep.titulo}" oninput="podcastData[${i}].titulo=this.value;save()">
+        <p class="podcast-desc-v2">
+Analizamos el dilema ético de si las empresas tienen derecho a recopilar, utilizar y vender información de los usuarios sin que estos comprendan plenamente las implicancias de su consentimiento. Desde la perspectiva de Immanuel Kant, reflexionamos sobre la importancia de respetar la dignidad y autonomía de las personas, evitando tratarlas únicamente como un medio para obtener beneficios económicos.
+</p>
+        <div class="podcast-divider"></div>
+        <div class="podcast-footer">
+          <div class="waveform">${bars}</div>
+          <a class="pill-link" href="${spotifyUrl}" target="_blank">🎧 Escuchar en Spotify</a>
+        </div>
       </div>`;
+      
     cont.appendChild(card);
   });
 }
-
 // ── Render Video ─────────────────────────────────────────────────────────────
-const videoData = [{titulo:'',url:'',reaccion:''},{titulo:'',url:'',reaccion:''}];
+const videoData = [
+  {titulo:'',url:'',reaccion:''}
+];
+
+function ytId(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function updateVideoThumb(i, val) {
+  videoData[i].url = val;
+  const frame = document.getElementById('video-frame-' + i);
+  const id = ytId(val);
+  if (frame) frame.style.backgroundImage = id ? `url(https://youtu.be/6lNOD3D-bm8)` : 'none';
+  const link = document.getElementById('video-yt-link-' + i);
+  if (link) link.href = val || '#';
+  save();
+}
+
+function playVideo(i) {
+  const id = ytId(videoData[i].url);
+  const frame = document.getElementById('video-frame-' + i);
+  if (!id || !frame) return;
+  frame.innerHTML = `<iframe src="https://youtu.be/6lNOD3D-bm8" title="Video reacción" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+}
+
 function renderVideo() {
   const grid = document.getElementById('video-grid');
   grid.innerHTML = '';
+
   videoData.forEach((v,i) => {
     const card = document.createElement('div');
-    card.className = 'video-card';
+    card.className = 'video-card-v2';
+    const id = ytId(v.url);
+    const bgStyle = id ? `background-image:url(https://youtu.be/6lNOD3D-bm8)` : '';
+
     card.innerHTML = `
-      <div class="video-thumb" style="background:var(--navy);">
-        <input type="text" placeholder="Pega URL del video aquí" value="${v.url}" oninput="videoData[${i}].url=this.value;save()" style="color:rgba(255,255,255,0.6);background:transparent;border:none;outline:none;font-family:'Jost',sans-serif;font-size:12px;text-align:center;width:80%;border-bottom:1px dashed rgba(255,255,255,0.3);">
+      <div class="video-frame-v2" id="video-frame-${i}" style="${bgStyle}">
+        <div class="video-tag-v2">Video-reacción ${String(i+1).padStart(2,'0')}</div>
+        <div class="video-dial-wrap" onclick="playVideo(${i})">
+          <div class="compass-dial on-image">
+            <div class="compass-ticks"></div>
+            <div class="compass-core"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+        </div>
+        <input class="video-url-input-v2" type="text" placeholder="https://youtu.be/6lNOD3D-bm8" value="${v.url}" onclick="event.stopPropagation()" oninput="updateVideoThumb(${i}, this.value)">
       </div>
-      <div class="video-info">
-        <div class="video-tag">Video-Reacción ${i+1}</div>
-        <input class="video-title-in" type="text" placeholder="Título del video analizado" value="${v.titulo}" oninput="videoData[${i}].titulo=this.value;save()">
-        <textarea class="video-reac" rows="4" placeholder="Escribe la reacción crítica del equipo: ¿qué dilemas éticos plantea este video? ¿cómo se relaciona con tu carrera y los códigos deontológicos?" oninput="videoData[${i}].reaccion=this.value;save()">${v.reaccion}</textarea>
-        <button class="ai-trigger" style="margin-top:.5rem;" onclick="openModal('video-reac-${i}','Reacción crítica al video','video_reaccion')">✦ Generar reacción con IA</button>
+      <div class="video-body-v2">
+      <h3 class="video-title-v2">
+Privacidad en venta: el precio de nuestros datos personales
+</h3>
+        <div class="video-quote-v2">
+         <p class="podcast-desc-v2">
+El video analizado aborda el dilema ético relacionado con la recopilación, uso y comercialización de los datos personales de los usuarios por parte de empresas tecnológicas y plataformas digitales. Se evidencia cómo muchas organizaciones obtienen información privada sin que las personas comprendan completamente el alcance de su consentimiento, lo que genera preocupaciones sobre la privacidad, la transparencia y el respeto a los derechos individuales. Desde la perspectiva kantiana, esta práctica puede considerarse problemática cuando las personas son tratadas únicamente como medios para obtener beneficios económicos y no como fines en sí mismas.
+</p>
+        </div>
+        <div class="video-footer-v2">
+          <a class="pill-link yt" id="video-yt-link-${i}" href="https://youtu.be/6lNOD3D-bm8" target="_blank">▶ Ver en YouTube</a>
+        </div>
       </div>`;
-    // Patch textarea id after creation
-    setTimeout(() => {
-      const ta = card.querySelectorAll('textarea')[0];
-      if (ta) ta.id = `video-reac-${i}`;
-    }, 0);
+
     grid.appendChild(card);
   });
 }
