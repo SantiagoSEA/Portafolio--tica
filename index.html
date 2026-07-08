@@ -444,42 +444,236 @@ font-family: 'Jost', sans-serif;
 }
 .video-reac:focus { border-bottom-color: var(--gold); }
 
-/* ── INFOGRAFÍA ── */
+/* ── INFOGRAFÍA · MÓDULO IV — GALERÍA 3D ── */
 .info-wrap {
-  padding: 6rem 8vw 5rem;
-  max-width: 900px; margin: 0 auto;
+  padding: 6rem 8vw 6rem;
+  max-width: 1320px; margin: 0 auto;
   animation: fadeUp 0.5s ease both;
 }
-.info-frame {
-  width: 100%; border: 2px solid var(--border);
-  border-radius: 2px; background: var(--white);
-  padding: 3rem; min-height: 400px;
-  display: flex; flex-direction: column; gap: 2rem;
+.info-title-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 3.4vw, 38px); font-weight: 600;
+  color: var(--navy); text-align: center; margin: 0 auto 3rem;
+  max-width: 700px;
 }
-.info-title-in {
-  font-family: 'Cormorant Garamond', serif; font-size: 32px;
-  color: var(--navy); font-weight: 600; text-align: center;
-  background: transparent; border: none; outline: none;
-  border-bottom: 1px solid transparent; width: 100%;
-  transition: border-color 0.2s; text-align: center;
+
+/* Grid + 3D perspective stage */
+.info-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2.4rem;
+  perspective: 1800px;
 }
-.info-title-in:focus { border-bottom-color: var(--gold); }
-.info-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
-.info-col {
-  border-left: 2px solid var(--gold); padding-left: 1rem;
+
+/* Card */
+.info-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--navy);
+  transform: rotateX(0) rotateY(0) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out, box-shadow 0.45s ease;
+  box-shadow:
+    0 1px 2px rgba(26,39,68,0.12),
+    0 14px 28px -8px rgba(26,39,68,0.28);
 }
-.info-col-title {
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 8px;
+.info-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(212,175,90,0.4),
+    0 40px 70px -18px rgba(26,39,68,0.55);
 }
-.info-col-body {
-  font-size: 13px; line-height: 1.7; color: var(--muted);
-  background: transparent; border: none; outline: none;
-  font-family: 'Jost', sans-serif; resize: vertical;
-  width: 100%; min-height: 100px;
-  border-bottom: 1px solid transparent; transition: border-color 0.2s;
+.info-card-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: translateZ(0) scale(1.02);
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
 }
-.info-col-body:focus { border-bottom-color: var(--gold); }
+.info-card:hover .info-card-img { transform: translateZ(0) scale(1.12); }
+
+/* Glossy 3D sheen that reacts to hover */
+.info-card-shine {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(125deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 65%, rgba(255,255,255,0.12) 100%);
+  mix-blend-mode: overlay;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.info-card:hover .info-card-shine { opacity: 1; }
+
+.info-card-num {
+  position: absolute; top: 1.1rem; left: 1.1rem; z-index: 3;
+  font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.08em;
+  color: var(--gold-light); background: rgba(26,39,68,0.4);
+  border: 1px solid rgba(212,175,90,0.5); border-radius: 999px;
+  padding: 4px 12px; backdrop-filter: blur(6px);
+  transform: translateZ(45px);
+}
+.info-card-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.7rem 1.6rem;
+  background: linear-gradient(180deg, rgba(26,39,68,0) 30%, rgba(15,22,41,0.55) 68%, rgba(15,22,41,0.94) 100%);
+  transform: translateZ(30px);
+}
+.info-card-eyebrow {
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 6px;
+}
+.info-card-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600;
+  color: #fff; line-height: 1.2; margin-bottom: 12px;
+}
+.info-card-hint {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+.info-card-hint svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* ── VISOR 3D A PANTALLA COMPLETA ── */
+.info-viewer {
+  display: none; position: fixed; inset: 0; z-index: 1200;
+  align-items: center; justify-content: center; overflow: hidden;
+}
+.info-viewer.active { display: flex; animation: infoFadeIn 0.4s ease both; }
+@keyframes infoFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.info-viewer-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  animation: infoKenburns 16s ease-in-out infinite alternate;
+}
+@keyframes infoKenburns {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.09); }
+}
+.info-viewer-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(125deg, rgba(13,20,38,0.9) 0%, rgba(13,20,38,0.6) 45%, rgba(13,20,38,0.3) 100%);
+}
+.info-viewer-close {
+  position: absolute; top: 1.8rem; right: 1.8rem; z-index: 30;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  color: #fff; font-size: 18px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s ease, transform 0.3s ease;
+}
+.info-viewer-close:hover { background: rgba(255,255,255,0.22); transform: rotate(90deg); }
+
+.info-viewer-stage {
+  position: relative; width: 100%; height: 100%; max-width: 1200px; margin: 0 auto;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6.5rem 5vw 5rem; gap: 2rem;
+}
+.info-viewer-stage::-webkit-scrollbar { width: 6px; }
+.info-viewer-stage::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 4px; }
+
+/* Header: ribbon + eyebrow + big title, sits over the blurred background */
+.info-viewer-header { text-align: center; max-width: 720px; z-index: 20; }
+.info-viewer-ribbon {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #0d1626; background: var(--gold-light);
+  padding: 5px 14px; border-radius: 999px; margin-bottom: 14px;
+  font-weight: 500;
+}
+.info-viewer-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 10px;
+}
+.info-viewer-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 600;
+  font-size: clamp(30px, 4.4vw, 48px); color: #fff; line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
+/* Grid of glass windows */
+.info-window-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; width: 100%; z-index: 20;
+}
+.info-window {
+  background: rgba(253,253,253,0.95);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(212,175,90,0.4);
+  border-radius: 18px;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.35);
+  padding: 1.6rem 1.7rem;
+  opacity: 0; transform: translateY(24px) scale(0.97);
+  animation: infoWindowIn 0.55s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: calc(var(--d, 0) * 0.09s);
+}
+@keyframes infoWindowIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+.info-window-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.info-window-icon {
+  width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 14px rgba(26,39,68,0.35);
+}
+.info-window-icon svg { width: 18px; height: 18px; stroke: var(--gold-light); fill: none; stroke-width: 2; }
+.info-window-heading {
+  font-family: 'Cormorant Garamond', serif; font-weight: 600;
+  font-size: 19px; color: var(--navy); line-height: 1.25;
+}
+.info-window-text {
+  font-family: 'EB Garamond', serif; font-size: 14.5px; line-height: 1.7;
+  color: var(--text);
+}
+.info-window-text p + p { margin-top: 10px; }
+.info-window-list {
+  list-style: none; display: flex; flex-direction: column; gap: 8px;
+  font-family: 'Jost', sans-serif; font-size: 13.5px; line-height: 1.6; color: var(--text);
+}
+.info-window-list li { position: relative; padding-left: 16px; }
+.info-window-list li::before {
+  content: ''; position: absolute; left: 0; top: 7px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+}
+.info-window-tagline {
+  display: flex; align-items: flex-start; gap: 10px; margin-top: 14px;
+  background: rgba(184,148,42,0.08); border-left: 3px solid var(--gold);
+  border-radius: 8px; padding: 10px 12px;
+  font-family: 'EB Garamond', serif; font-style: italic; font-size: 13.5px;
+  line-height: 1.6; color: var(--navy);
+}
+.info-window-tagline svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; stroke: var(--gold); fill: none; stroke-width: 2; }
+
+/* Bottom quote bar */
+.info-quote-bar {
+  z-index: 20; width: 100%; text-align: center;
+  background: rgba(15,22,41,0.55); border: 1px solid rgba(212,175,90,0.4);
+  border-radius: 14px; padding: 1.1rem 1.8rem;
+  font-family: 'EB Garamond', serif; font-style: italic; font-size: 15px;
+  color: #fff; line-height: 1.6;
+}
+
+.info-viewer-counter {
+  position: absolute; top: 1.9rem; left: 6vw; z-index: 30;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+.info-viewer-nav {
+  position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+  z-index: 30; display: flex; gap: 10px;
+}
+.info-viewer-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.35); cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.info-viewer-dot.active { background: var(--gold-light); transform: scale(1.3); }
+
+@media (max-width: 720px) {
+  .info-viewer-stage { padding: 5.5rem 6vw 6rem; }
+  .info-window-grid { grid-template-columns: 1fr; }
+}
 
 /* ── AI MODAL ── */
 .modal-bg {
@@ -578,8 +772,10 @@ font-family: 'Jost', sans-serif;
   .manifiesto-wrap { grid-template-columns: 1fr;
     gap: 2rem; }
   .video-grid { grid-template-columns: 1fr; }
-  .info-cols { grid-template-columns: 1fr; }
-  
+  .info-gallery { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .info-gallery { grid-template-columns: 1fr; }
 }
 @media print {
   .nav, .save-bar, .modal-bg, .ai-trigger { display: none !important; }
@@ -1331,29 +1527,25 @@ window.addEventListener('scroll', () => {
   <div class="info-wrap">
     <div class="section-eyebrow"><span class="rule"></span>Módulo IV</div>
     <h2 class="section-h2">Nuestra <em>Infografía</em></h2>
-    <p class="section-desc">Síntesis visual de los aprendizajes éticos del semestre presentada como evidencia integradora.</p>
-    <div class="info-frame">
-      <input class="info-title-in" type="text" placeholder="Título de la infografía" id="info-titulo" oninput="save()">
-      <div class="info-cols">
-        <div class="info-col">
-          <div class="info-col-title">Concepto central</div>
-          <textarea class="info-col-body" id="info-col1" placeholder="Describe el concepto ético central de la infografía..." oninput="save()"></textarea>
-          <button class="ai-trigger" onclick="openModal('info-col1','Concepto central de la infografía','infografia1')">✦ IA</button>
-        </div>
-        <div class="info-col">
-          <div class="info-col-title">Dilemas identificados</div>
-          <textarea class="info-col-body" id="info-col2" placeholder="Principales dilemas éticos de tu carrera..." oninput="save()"></textarea>
-          <button class="ai-trigger" onclick="openModal('info-col2','Dilemas éticos identificados','infografia2')">✦ IA</button>
-        </div>
-        <div class="info-col">
-          <div class="info-col-title">Compromisos éticos</div>
-          <textarea class="info-col-body" id="info-col3" placeholder="Compromisos éticos del equipo para el ejercicio profesional..." oninput="save()"></textarea>
-          <button class="ai-trigger" onclick="openModal('info-col3','Compromisos éticos del equipo','infografia3')">✦ IA</button>
-        </div>
-      </div>
+    <p class="section-desc">Síntesis visual de los aprendizajes éticos del semestre presentada como evidencia integradora. Toca una pieza para explorarla en detalle.</p>
+
+    <div class="info-gallery" id="info-gallery">
+      <!-- rendered by JS from infografiaItems -->
     </div>
   </div>
 </section>
+
+<!-- VISOR 3D DE LA INFOGRAFÍA -->
+<div class="info-viewer" id="info-viewer">
+  <img class="info-viewer-bg" id="info-viewer-bg" src="" alt="">
+  <div class="info-viewer-overlay"></div>
+  <div class="info-viewer-counter" id="info-viewer-counter">01 / 03</div>
+  <div class="info-viewer-close" onclick="closeInfoViewer()">✕</div>
+  <div class="info-viewer-stage" id="info-viewer-stage">
+    <!-- rendered dynamically by JS: header, N windows, quote bar -->
+  </div>
+  <div class="info-viewer-nav" id="info-viewer-nav"></div>
+</div>
 
 <!-- SAVE BAR -->
 <div class="save-bar">
@@ -1607,6 +1799,204 @@ El video analizado aborda el dilema ético relacionado con la recopilación, uso
   });
 }
 
+// ── INFOGRAFÍA · MÓDULO IV (galería 3D) ──────────────────────────────────────
+// EDITA AQUÍ: una entrada por cada imagen/capa de tu infografía.
+// img     -> ruta de la imagen
+// ribbon  -> etiqueta corta opcional tipo "CAPA 1" (déjalo en '' si no aplica)
+// label   -> texto pequeño (eyebrow) sobre el título
+// title   -> título grande que aparece al abrir la imagen
+// windows -> arreglo de "ventanas" con la información. Cada una puede ser:
+//            { icon:'search', title:'...', type:'paragraph', body:'texto' }               -> un párrafo
+//            { icon:'search', title:'...', type:'paragraph', body:['p1','p2'] }            -> varios párrafos
+//            { icon:'shield', title:'...', type:'list', items:['punto 1','punto 2'] }      -> lista con viñetas
+//            agrega "tag:'nota destacada'" a cualquier ventana para una franja resaltada
+// quote   -> frase de cierre opcional (barra inferior). Déjalo en '' si no aplica
+const infografiaItems = [
+  {
+    img: 'Images/PersonaVulnerable.png',
+    ribbon: '',
+    label: 'ÉTICA DEL CUIDADO · Población vulnerable',
+    title: 'Personas con baja alfabetización digital',
+    windows: [
+      {
+        icon: 'search',
+        title: '¿Quiénes son?',
+        type: 'paragraph',
+        body: 'Son personas que tienen dificultades para comprender y utilizar herramientas digitales, interpretar información en línea o reconocer los riesgos asociados al uso de sus datos personales.'
+      },
+      {
+        icon: 'shield',
+        title: '¿Por qué son vulnerables?',
+        type: 'list',
+        items: [
+          'Desconocen cómo se recopilan y utilizan sus datos.',
+          'No comprenden los permisos o condiciones de las aplicaciones y servicios digitales.',
+          'Pueden ser engañadas o inducidas a compartir información sin saberlo.',
+          'Sus derechos a la privacidad y a la protección de datos pueden ser fácilmente vulnerados.'
+        ]
+      },
+      {
+        icon: 'camera',
+        title: 'Descripción de la imagen y vulnerabilidad',
+        type: 'paragraph',
+        body: [
+          'La imagen muestra a una persona adulta mayor que recibe apoyo para entender el uso de un teléfono móvil. Representa a muchas personas con baja alfabetización digital que enfrentan dificultades para comprender cómo funcionan los sistemas tecnológicos y cómo se utilizan sus datos personales.',
+          'En el contexto profesional, esta población es más vulnerable frente a la recopilación, almacenamiento o comercialización de información sin un consentimiento informado. Su vulnerabilidad no radica solo en la falta de conocimiento técnico, sino en la posibilidad de perder control sobre su propia privacidad.'
+        ]
+      },
+      {
+        icon: 'heart',
+        title: 'Nuestro compromiso ético de cuidado',
+        type: 'paragraph',
+        body: [
+          'Desde la perspectiva de Levinas, el rostro del otro nos interpela y nos recuerda que antes de cualquier norma existe una responsabilidad hacia la persona.',
+          'Siguiendo la ética del cuidado de Gilligan y Noddings, entendemos que el desarrollo tecnológico no debe centrarse solo en la eficiencia sino en responder a las necesidades concretas de quienes son más frágiles y pueden ser fácilmente afectados.'
+        ],
+        tag: 'Asumimos el compromiso de diseñar, desarrollar y gestionar sistemas más transparentes, seguros y comprensibles, que protejan la dignidad, la privacidad y los derechos de todas las personas.'
+      }
+    ],
+    quote: 'Detrás de cada dato existe una persona,una historia y una responsabilidad ética.'
+  },
+  {
+    img: 'Images/ConflictoAmbiental.png',
+    ribbon: 'Capa 2',
+    label: 'Responsabilidad ambiental · Compromiso con las generaciones futuras',
+    title: 'Gestion eficiente de los Residuos de Apartados Eléctricos y Eléctronicos (RAEE)',
+    windows: [
+      {
+        icon: 'alert',
+        title: '¿Por qué es un problema?',
+        type: 'list',
+        items: [
+          'Muchos residuos electrónicos terminan en botaderos informales.',
+          'Contienen metales pesados que contaminan el ambiente.',
+          'La población desconoce los puntos de acopio autorizados.',
+          'El crecimiento del consumo tecnológico aumenta cada año la cantidad de residuos.'
+        ]
+      },
+      {
+        icon: 'leaf',
+        title: 'Nuestro compromiso con las generaciones futuras',
+        type: 'paragraph',
+        body: [
+          'Desde el principio de responsabilidad de Hans Jonas, comprendemos que nuestras decisiones tecnológicas deben considerar el bienestar de quienes vivirán en el futuro.',
+          'Asimismo, Enrique Leff plantea que la justicia ambiental solo es posible cuando el desarrollo tecnológico incorpora criterios de sostenibilidad y equidad social.'
+        ],
+        tag: 'Como futuros ingenieros empresariales y de sistemas, asumimos el compromiso de diseñar soluciones tecnológicas responsables, promoviendo el reciclaje de residuos electrónicos, la economía circular y sistemas que protejan tanto a las personas como al ambiente para las generaciones presentes y futuras.'
+      },
+      {
+        icon: 'camera',
+        title: 'Descripción de la imagen y conflicto ambiental',
+        type: 'paragraph',
+        body: [
+          'La imagen representa a una persona adulta mayor sosteniendo un teléfono celular antiguo del que brotan raíces y hojas verdes. Esta metáfora simboliza que la tecnología puede transformarse en una oportunidad para cuidar el ambiente cuando existe un manejo responsable de los residuos electrónicos.',
+          'Al fondo se observa un punto de acopio formal iluminado, representando el camino hacia una economía más sostenible. La ilustración conecta la baja alfabetización digital con el desconocimiento sobre la correcta disposición de los aparatos electrónicos, evidenciando que la brecha digital también tiene consecuencias ambientales.'
+        ]
+      }
+    ],
+    quote: 'Cada dispositivo que usamos deja una huella. Nuestro deber es decidir qué legado queremos dejar.'
+  }
+];
+
+// Set de íconos en línea (trazo, sin relleno) usados en las ventanas
+const INFO_ICONS = {
+  search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  shield: '<svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg>',
+  camera: '<svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+  heart: '<svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>',
+  leaf:  '<svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-6 7-11 15-11 0 8-5 15-11 15z"/><path d="M4 13c4 0 8-3 8-8"/></svg>',
+  alert: '<svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
+  globe: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg>'
+};
+
+function renderInfografia() {
+  const grid = document.getElementById('info-gallery');
+  if (!grid) return;
+  grid.innerHTML = '';
+  infografiaItems.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'info-card';
+    card.onclick = () => openInfoViewer(i);
+    card.innerHTML = `
+      <img class="info-card-img" src="${item.img}" alt="${item.label}">
+      <div class="info-card-shine"></div>
+      <div class="info-card-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="info-card-overlay">
+        <div class="info-card-eyebrow">${item.label}</div>
+        <div class="info-card-title">${item.title}</div>
+        <div class="info-card-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Ver a pantalla completa</div>
+      </div>`;
+    card.addEventListener('mousemove', (e) => tiltCard(e, card));
+    card.addEventListener('mouseleave', () => resetTilt(card));
+    grid.appendChild(card);
+  });
+}
+
+function tiltCard(e, card) {
+  const r = card.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - 0.5;
+  const y = (e.clientY - r.top) / r.height - 0.5;
+  card.style.transform = `rotateX(${(-y*10).toFixed(2)}deg) rotateY(${(x*12).toFixed(2)}deg) translateZ(0)`;
+}
+function resetTilt(card) {
+  card.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+}
+
+function renderWindowBody(w) {
+  if (w.type === 'list') {
+    return `<ul class="info-window-list">${w.items.map(li => `<li>${li}</li>`).join('')}</ul>`;
+  }
+  const paras = Array.isArray(w.body) ? w.body : [w.body];
+  return paras.map(p => `<p>${p}</p>`).join('');
+}
+
+let _infoIndex = 0;
+function openInfoViewer(i) {
+  _infoIndex = i;
+  const item = infografiaItems[i];
+  const viewer = document.getElementById('info-viewer');
+
+  document.getElementById('info-viewer-bg').src = item.img;
+  document.getElementById('info-viewer-counter').textContent =
+    String(i+1).padStart(2,'0') + ' / ' + String(infografiaItems.length).padStart(2,'0');
+
+  const windowsHtml = item.windows.map((w, idx) => `
+    <div class="info-window" style="--d:${idx}">
+      <div class="info-window-head">
+        <span class="info-window-icon">${INFO_ICONS[w.icon] || INFO_ICONS.search}</span>
+        <div class="info-window-heading">${w.title}</div>
+      </div>
+      <div class="info-window-text">${renderWindowBody(w)}</div>
+      ${w.tag ? `<div class="info-window-tagline">${INFO_ICONS.leaf}${w.tag}</div>` : ''}
+    </div>`).join('');
+
+  document.getElementById('info-viewer-stage').innerHTML = `
+    <div class="info-viewer-header">
+      ${item.ribbon ? `<div class="info-viewer-ribbon">${item.ribbon}</div>` : ''}
+      <div class="info-viewer-label">${item.label}</div>
+      <div class="info-viewer-title">${item.title}</div>
+    </div>
+    <div class="info-window-grid">${windowsHtml}</div>
+    ${item.quote ? `<div class="info-quote-bar">${item.quote}</div>` : ''}
+  `;
+  document.getElementById('info-viewer-stage').scrollTop = 0;
+
+  const nav = document.getElementById('info-viewer-nav');
+  nav.innerHTML = infografiaItems.map((_, idx) =>
+    `<div class="info-viewer-dot ${idx===i?'active':''}" onclick="event.stopPropagation(); openInfoViewer(${idx})"></div>`
+  ).join('');
+
+  viewer.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeInfoViewer() {
+  document.getElementById('info-viewer').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeInfoViewer();
+});
+
 // ── AI Modal ─────────────────────────────────────────────────────────────────
 let _fieldId = null, _promptType = null, _aiText = '';
 
@@ -1615,9 +2005,6 @@ const PROMPTS = {
   mapa_critico: ctx => `Describe en 4-5 oraciones las principales negligencias éticas identificadas en el ámbito laboral de una carrera universitaria y las propuestas de mejora desde la ética profesional. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
   podcast: ctx => `Escribe una descripción breve (3-4 oraciones) para un episodio de podcast universitario sobre ética y deontología profesional. Debe sonar académico pero accesible. ${ctx?'Contexto: '+ctx:''} Solo la descripción.`,
   video_reaccion: ctx => `Escribe una reacción crítica (4-5 oraciones) a un video sobre ética profesional, analizando los dilemas éticos que plantea y su relación con la carrera y los códigos deontológicos. ${ctx?'Contexto: '+ctx:''} Solo la reacción.`,
-  infografia1: ctx => `Explica en 3-4 oraciones el concepto ético central para una infografía del curso de Ética y Deontología Profesional. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
-  infografia2: ctx => `Describe en 3-4 oraciones los principales dilemas éticos de una carrera universitaria para una infografía académica. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
-  infografia3: ctx => `Redacta en 3-4 oraciones los compromisos éticos de un equipo de estudiantes para el ejercicio profesional futuro. ${ctx?'Contexto: '+ctx:''} Solo el texto.`,
 };
 
 function openModal(fieldId, title, promptType) {
@@ -1690,12 +2077,6 @@ function save(showOk=false) {
     mapa: document.getElementById('mapa-critico')?.value,
     podcast: podcastData,
     video: videoData,
-    info: {
-      titulo: document.getElementById('info-titulo')?.value,
-      col1: document.getElementById('info-col1')?.value,
-      col2: document.getElementById('info-col2')?.value,
-      col3: document.getElementById('info-col3')?.value,
-    }
   };
   localStorage.setItem('brujula_etica', JSON.stringify(data));
   if (showOk) {
@@ -1723,18 +2104,12 @@ function load() {
     if (d.mapa)       document.getElementById('mapa-critico').value    = d.mapa;
     if (d.podcast)    d.podcast.forEach((p,i) => Object.assign(podcastData[i]||{}, p));
     if (d.video)      d.video.forEach((v,i) => Object.assign(videoData[i]||{}, v));
-    if (d.info) {
-      if (d.info.titulo) document.getElementById('info-titulo').value = d.info.titulo;
-      if (d.info.col1)   document.getElementById('info-col1').value   = d.info.col1;
-      if (d.info.col2)   document.getElementById('info-col2').value   = d.info.col2;
-      if (d.info.col3)   document.getElementById('info-col3').value   = d.info.col3;
-    }
-    renderTeam(); renderValores(); renderPodcast(); renderVideo();
+    renderTeam(); renderValores(); renderPodcast(); renderVideo(); renderInfografia();
   } catch(e) { console.error(e); }
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────
-renderTeam(); renderValores(); renderPodcast(); renderVideo();
+renderTeam(); renderValores(); renderPodcast(); renderVideo(); renderInfografia();
 //load();
 </script>
 <script>
